@@ -1,7 +1,7 @@
 class Api::V1::PostsController < ApplicationController
 
     def index
-        posts = Post.all
+        posts = Post.all.sort { |a,b| b.created_at <=> a.created_at }
         render json: posts
     end
 
