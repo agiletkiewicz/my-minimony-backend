@@ -1,4 +1,4 @@
-class API::V1::UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
@@ -33,7 +33,7 @@ class API::V1::UsersController < ApplicationController
     private
       
       def user_params
-        params.require(:user).permit(:username, :email, :password, :password_confirmation)
+        params.require(:user).permit(:username, :name, :password, :password_confirmation)
       end
 
  end
