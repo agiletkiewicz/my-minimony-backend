@@ -23,6 +23,7 @@ class Api::V1::UsersController < ApplicationController
             user: @user
           }
         else 
+          byebug
           render json: {
             status: 500,
             errors: @user.errors.full_messages
