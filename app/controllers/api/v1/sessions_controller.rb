@@ -9,10 +9,7 @@ class Api::V1::SessionsController < ApplicationController
             user: @user
           }
         else
-          render json: { 
-            status: 401,
-            errors: ['no such user', 'verify credentials and try again or signup']
-          }
+          render json: { status: 401 }
         end
       end
 
