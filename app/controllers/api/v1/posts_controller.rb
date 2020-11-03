@@ -11,7 +11,8 @@ class Api::V1::PostsController < ApplicationController
         if post.save
             render json: post
         else
-            render json: {error: 'Error creating post'}
+            post.save
+            render json: {errors: post.errors.full_messages}
         end
     end
 
