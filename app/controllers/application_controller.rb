@@ -3,9 +3,9 @@ class ApplicationController < ActionController::API
     # helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!
     before_action :snake_case_params
   
-    def login!
-      session[:user_id] = @user.id
-    end
+  def login!
+    session[:user_id] = @user.id
+  end
 
   def logged_in?
       !!session[:user_id]

@@ -9,7 +9,7 @@ class Api::V1::PostsController < ApplicationController
         post = Post.new(post_params)
         post.user = User.last
         if post.save
-            render json: post
+            render json: PostSerializer.new(post)
         else
             post.save
             render json: {errors: post.errors.full_messages}
