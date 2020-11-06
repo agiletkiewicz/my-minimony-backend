@@ -2,9 +2,10 @@ class Api::V1::UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        options = {include: [:boards]}
        if @user
           render json: {
-            user: @user
+            user: UserSerializer.new(@user, options)
           }
         else
           render json: {
