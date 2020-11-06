@@ -1,5 +1,5 @@
 class BoardSerializer
     include JSONAPI::Serializer
-    attributes :title
+    attributes :title, :id
     
 end

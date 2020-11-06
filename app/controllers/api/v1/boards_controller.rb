@@ -11,6 +11,12 @@ class Api::V1::BoardsController < ApplicationController
         end
     end
 
+    def show 
+        board = Board.find_by(id: params[:id])
+        posts = board.posts
+        render json: PostSerializer.new(posts)
+    end
+
     private 
 
     def board_params
