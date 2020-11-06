@@ -3,7 +3,7 @@ class Api::V1::BoardsController < ApplicationController
 
     def create 
         board = current_user.boards.build(board_params)
-        if post.save
+        if board.save
             render json: BoardSerializer.new(board)
         else
             board.save
@@ -13,7 +13,7 @@ class Api::V1::BoardsController < ApplicationController
 
     private 
 
-    def post_params
+    def board_params
         params.require(:board).permit(:title)
     end
 
