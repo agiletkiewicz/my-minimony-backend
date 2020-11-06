@@ -6,8 +6,8 @@ class Api::V1::PostsController < ApplicationController
     end
 
     def create 
-        post = Post.new(post_params)
-        post.user = User.last
+        byebug
+        post = current_user.posts.build(post_params)
         if post.save
             render json: PostSerializer.new(post)
         else
