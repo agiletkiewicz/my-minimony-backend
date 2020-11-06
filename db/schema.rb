@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_28_223452) do
+ActiveRecord::Schema.define(version: 2020_11_05_200850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "boards", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_boards_on_user_id"
+  end
+
+  create_table "boards_posts", force: :cascade do |t|
+    t.bigint "board_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_boards_posts_on_board_id"
+    t.index ["post_id"], name: "index_boards_posts_on_post_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
@@ -32,5 +49,8 @@ ActiveRecord::Schema.define(version: 2020_10_28_223452) do
     t.string "password_digest"
   end
 
+  add_foreign_key "boards", "users"
+  add_foreign_key "boards_posts", "boards"
+  add_foreign_key "boards_posts", "posts"
   add_foreign_key "posts", "users"
 end

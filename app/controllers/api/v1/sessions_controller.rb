@@ -4,9 +4,10 @@ class Api::V1::SessionsController < ApplicationController
         @user = User.find_by(username: session_params[:username])
         if @user && @user.authenticate(session_params[:password])
           login!
+          options = {include: [:boards]}
           render json: {
             logged_in: true,
-            user: @user
+            user: UserSerializer.new(current_user, options)
           }
         else
           render json: { status: 401 }
@@ -15,9 +16,10 @@ class Api::V1::SessionsController < ApplicationController
 
     def is_logged_in?
         if logged_in? && current_user
+          options = {include: [:boards]}
           render json: {
             logged_in: true,
-            user: current_user
+            user: UserSerializer.new(current_user, options)
           }
         else
           render json: {
