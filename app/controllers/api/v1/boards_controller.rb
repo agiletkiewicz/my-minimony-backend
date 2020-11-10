@@ -12,7 +12,7 @@ class Api::V1::BoardsController < ApplicationController
             render json: BoardSerializer.new(board)
         else
             board.save
-            render json: {errors: board.errors.full_messages}
+            render json: {error: board.errors.full_messages}
         end
     end
 

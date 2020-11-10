@@ -4,13 +4,16 @@ class Api::V1::SessionsController < ApplicationController
         @user = User.find_by(username: session_params[:username])
         if @user && @user.authenticate(session_params[:password])
           login!
-          options = {include: [:boards]}
           render json: {
             logged_in: true,
-            user: UserSerializer.new(current_user, options)
+            user: UserSerializer.new(current_user),
+            boards: BoardSerializer.new(current_user.boards)
           }
         else
-          render json: { status: 401 }
+          render json: { 
+            status: 401, 
+            error: "Could not authenticate your account"
+          }
         end
       end
 
@@ -23,8 +26,7 @@ class Api::V1::SessionsController < ApplicationController
           }
         else
           render json: {
-            logged_in: false,
-            message: 'no such user'
+            logged_in: false
           }
         end
       end
