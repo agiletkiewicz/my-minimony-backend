@@ -16,10 +16,10 @@ class Api::V1::SessionsController < ApplicationController
 
     def is_logged_in?
         if logged_in? && current_user
-          options = {include: [:boards]}
           render json: {
             logged_in: true,
-            user: UserSerializer.new(current_user, options)
+            user: UserSerializer.new(current_user),
+            boards: BoardSerializer.new(current_user.boards)
           }
         else
           render json: {

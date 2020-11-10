@@ -13,6 +13,8 @@ class Api::V1::BoardspostController < ApplicationController
         end
     end
 
+    
+
     private 
 
     def boardspost_params
