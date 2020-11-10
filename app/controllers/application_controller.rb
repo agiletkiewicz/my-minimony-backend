@@ -9,19 +9,19 @@ class ApplicationController < ActionController::API
 
   def logged_in?
       !!session[:user_id]
-    end
+  end
 
   def current_user
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    end
+  end
 
   def authorized_user?
        @user == current_user
-     end
+  end
 
   def logout!
        session.clear
-     end
+  end
 
   def snake_case_params
     request.parameters.deep_transform_keys!(&:underscore)
