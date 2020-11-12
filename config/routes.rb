@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     namespace :v1 do 
       resources :posts, only: [:index, :create]
       resources :users, only: [:create, :show]
-      resources :boards, only: [:create, :show, :index]
-      resources :boardspost, only: [:create, :show]
+      resources :boards, only: [:create, :show, :index, :destroy]
+      resources :boardspost, only: [:create, :destroy]
 
       post '/login', to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'

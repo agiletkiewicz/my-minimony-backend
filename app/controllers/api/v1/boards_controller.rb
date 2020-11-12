@@ -23,6 +23,16 @@ class Api::V1::BoardsController < ApplicationController
         render json: PostSerializer.new(posts)
     end
 
+    def destroy 
+        board = Board.find_by(id: params[:id])
+        if board
+            board.destroy
+            render json: {
+            status: 200
+            }
+        end
+    end
+
     private 
 
     def board_params
