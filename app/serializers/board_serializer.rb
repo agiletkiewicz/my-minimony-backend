@@ -1,8 +1,8 @@
 class BoardSerializer
     include JSONAPI::Serializer
-    attributes :title, :id, :boards_posts
+    attributes :title, :id
+    set_key_transform :camel_lower
 
-    has_many :posts
-    has_many :boards_posts, serializer: BoardsPostSerializer
+    has_many :boards_post, serializer: BoardsPostSerializer
     
 end
