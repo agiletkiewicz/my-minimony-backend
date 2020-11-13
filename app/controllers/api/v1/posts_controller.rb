@@ -1,8 +1,13 @@
 class Api::V1::PostsController < ApplicationController
 
     def index
-        posts = Post.all.sort { |a,b| b.created_at <=> a.created_at }
-        render json: PostSerializer.new(posts)
+        if params[:user_id]
+            posts = User.find_by(id: params[:user_id]).posts
+            render json: PostSerializer.new(posts)
+        else
+            posts = Post.all.sort { |a,b| b.created_at <=> a.created_at }
+            render json: PostSerializer.new(posts)
+        end
     end
 
     def create 
