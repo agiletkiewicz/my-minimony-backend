@@ -20,6 +20,16 @@ class Api::V1::PostsController < ApplicationController
         end
     end
 
+    def destroy 
+        post = Post.find_by(id: params[:id])
+        if post
+            post.destroy
+            render json: {
+            status: 200
+            }
+        end
+    end
+
     private 
 
     def post_params
