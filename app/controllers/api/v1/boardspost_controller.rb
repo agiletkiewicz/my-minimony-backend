@@ -1,6 +1,5 @@
 class Api::V1::BoardspostController < ApplicationController
 
-
     def create 
         boards_post = BoardsPost.new(boardspost_params)
         if boards_post.save

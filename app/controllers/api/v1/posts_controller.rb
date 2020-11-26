@@ -16,7 +16,10 @@ class Api::V1::PostsController < ApplicationController
             render json: PostSerializer.new(post)
         else
             post.save
-            render json: {error: post.errors.full_messages}
+            render json: {
+                status: 422, 
+                error: post.errors.full_messages
+            }
         end
     end
 
