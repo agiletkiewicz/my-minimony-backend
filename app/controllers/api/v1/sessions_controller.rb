@@ -2,14 +2,14 @@ class Api::V1::SessionsController < ApplicationController
     
     def create
         @user = User.find_by(username: session_params[:username])
-        byebug
         if @user && @user.authenticate(session_params[:password])
           login!
           options = {include: [:boards_post]}
           render json: {
             logged_in: true,
             user: UserSerializer.new(current_user),
-            boards: BoardSerializer.new(current_user.boards, options)
+            boards: BoardSerializer.new(current_user.boards, options), 
+            follows: BoardSerializer.new(current_user.followed_boards)
           }
         else
           render json: { 
@@ -25,7 +25,8 @@ class Api::V1::SessionsController < ApplicationController
           render json: {
             logged_in: true,
             user: UserSerializer.new(current_user),
-            boards: BoardSerializer.new(current_user.boards, options)
+            boards: BoardSerializer.new(current_user.boards, options), 
+            follows: BoardSerializer.new(current_user.followed_boards)
           }
         else
           render json: {
