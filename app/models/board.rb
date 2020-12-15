@@ -2,6 +2,8 @@ class Board < ApplicationRecord
   belongs_to :user
   has_many :boards_post, dependent: :destroy
   has_many :posts, through: :boards_post
+  has_many :follows
+  has_many :users, through: :follows
 
   validates :title, presence: true
 
