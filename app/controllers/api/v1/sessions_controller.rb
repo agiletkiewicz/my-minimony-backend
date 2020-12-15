@@ -8,7 +8,8 @@ class Api::V1::SessionsController < ApplicationController
           render json: {
             logged_in: true,
             user: UserSerializer.new(current_user),
-            boards: BoardSerializer.new(current_user.boards, options)
+            boards: BoardSerializer.new(current_user.boards, options), 
+            follows: BoardSerializer.new(current_user.followed_boards)
           }
         else
           render json: { 
@@ -24,7 +25,8 @@ class Api::V1::SessionsController < ApplicationController
           render json: {
             logged_in: true,
             user: UserSerializer.new(current_user),
-            boards: BoardSerializer.new(current_user.boards, options)
+            boards: BoardSerializer.new(current_user.boards, options), 
+            follows: BoardSerializer.new(current_user.followed_boards)
           }
         else
           render json: {
