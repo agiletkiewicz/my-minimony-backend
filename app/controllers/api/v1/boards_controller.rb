@@ -1,9 +1,14 @@
 class Api::V1::BoardsController < ApplicationController
 
     def index 
-        boards = current_user.boards 
-        options = {include: [:boards_post]}
-        render json: BoardSerializer.new(boards, options)
+        if params[:post_id]
+            post = Post.find_by(id: params[:post_id])
+            render json: BoardSerializer.new(post.boards)
+        else
+            boards = current_user.boards 
+            options = {include: [:boards_post]}
+            render json: BoardSerializer.new(boards, options)
+        end
     end
 
 
