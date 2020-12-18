@@ -15,7 +15,13 @@ class Api::V1::FollowsController < ApplicationController
     end
 
     def destroy 
-
+        follow = follow.find_by(id: params[:id])
+        if follow
+            follow.destroy
+            render json: {
+            status: 200
+            }
+        end
     end
 
     private 
