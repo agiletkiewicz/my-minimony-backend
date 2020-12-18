@@ -1,7 +1,8 @@
 class Api::V1::FollowsController < ApplicationController
 
     def create 
-        follow = Follow.new(follow_params)
+        follow = Follow.new(board_id: params[:board_id], user_id: params[:user_id])
+
         if follow.save
             render json: {
                 status: 200,
@@ -17,11 +18,9 @@ class Api::V1::FollowsController < ApplicationController
 
     end
 
-
-
     private 
 
-    def boardspost_params
+    def follow_params
         params.require(:follow).permit(:board_id, :user_id)
     end
 
