@@ -25,7 +25,10 @@ class Api::V1::BoardsController < ApplicationController
     def show 
         board = Board.find_by(id: params[:id])
         posts = board.posts
-        render json: PostSerializer.new(posts)
+        render json: {
+            board: BoardSerializer.new(board),
+            posts: PostSerializer.new(posts)
+        }
     end
 
     def destroy 
