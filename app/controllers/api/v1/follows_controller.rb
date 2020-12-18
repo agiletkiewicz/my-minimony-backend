@@ -6,7 +6,7 @@ class Api::V1::FollowsController < ApplicationController
         if follow.save
             render json: {
                 status: 200,
-                follow: follow
+                follow: FollowSerializer.new(follow)
             }
         else
             follow.save
