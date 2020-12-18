@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       end
       resources :boards, only: [:create, :show, :index, :destroy]
       resources :boardspost, only: [:create, :destroy]
+      resources :follows, only: [:create]
 
       post '/login', to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'
