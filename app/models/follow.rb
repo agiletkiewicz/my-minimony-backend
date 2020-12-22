@@ -4,9 +4,10 @@ class Follow < ApplicationRecord
 
   def image
     self.board.image
-end
+  end
 
-def title
+  def title
     self.board.title
-end
+  end
+  
 end
