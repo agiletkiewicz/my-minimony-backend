@@ -9,10 +9,6 @@ class Post < ApplicationRecord
 
     has_one_attached :image
 
-    # def get_image_url
-    #     Rails.application.routes.url_helpers.rails_representation_url(Post.last.image)
-    # end
-
     def get_image_url
         if self.image_url != ""
             self.image_url
