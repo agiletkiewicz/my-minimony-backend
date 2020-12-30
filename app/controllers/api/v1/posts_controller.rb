@@ -1,6 +1,7 @@
 class Api::V1::PostsController < ApplicationController
 
     def index
+        # byebug
         if params[:user_id]
             posts = User.find_by(id: params[:user_id]).posts
             render json: PostSerializer.new(posts)
