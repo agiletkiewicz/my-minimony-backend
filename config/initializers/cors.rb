@@ -16,7 +16,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
 
   allow do
-    origins 'http://www.myminimonyapp.com'
+    origins 'https://www.myminimonyapp.com'
 
     resource '*',
       headers: :any,
