@@ -28,4 +28,4 @@
 
 /config/cloudinary.yml
 
-config/credentials.yml.enc
+/config/credentials.yml.enc
