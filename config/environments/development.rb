@@ -1,6 +1,6 @@
 Rails.application.configure do
 
-  Rails.application.routes.default_url_options = { host: "http://localhost:3000" }
+  Rails.application.routes.default_url_options = { host: "https://my-minimony.herokuapp.com/" }
 
   # This also configures session_options for use below
   config.session_store :cookie_store, key: '_interslice_session'
