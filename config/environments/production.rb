@@ -1,6 +1,6 @@
 Rails.application.configure do
 
-  Rails.application.routes.default_url_options = { host: "http://localhost:3000" }
+  Rails.application.routes.default_url_options = { host: "https://my-minimony.herokuapp.com/" }
   
   # Settings specified here will take precedence over those in config/application.rb.
 
