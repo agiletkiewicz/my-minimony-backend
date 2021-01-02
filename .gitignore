@@ -27,3 +27,5 @@
 /config/master.key
 
 /config/cloudinary.yml
+
+config/credentials.yml.enc
