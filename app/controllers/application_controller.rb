@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::API
-    # skip_before_action :verify_authenticity_token
-    # helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!
-    before_action :snake_case_params
+  before_action :transform_params
   
   def login!
     session[:user_id] = @user.id
@@ -15,15 +13,12 @@ class ApplicationController < ActionController::API
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  # def authorized_user?
-  #   @user == current_user
-  # end
 
   def logout!
     session.clear
   end
 
-  def snake_case_params
+  def transform_params
     request.parameters.deep_transform_keys!(&:underscore)
   end
   
